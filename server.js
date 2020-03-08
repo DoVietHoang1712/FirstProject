@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const path = require('path');
 const app = express();
-
+const PORT = process.env.PORT || 3000;
 //View engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -20,8 +20,9 @@ app.use(methodOverride('_method'));
 app.use('/', require('./routes/index'));
 app.use('/authors', require('./routes/author'));
 app.use('/books', require('./routes/book'));
+app.use('/users', require('./routes/user'));
 app.use(express.static('public'));
 // App listen port
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Is running...');
 })
